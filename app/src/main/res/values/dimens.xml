@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="footer_font">10sp</dimen>
+    <dimen name="title_font">18sp</dimen>
+    <dimen name="description_font">16sp</dimen>
+    <dimen name="footer_margin">8dp</dimen>
+</resources>
