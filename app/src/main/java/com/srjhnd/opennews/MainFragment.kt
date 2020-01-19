@@ -1,9 +1,8 @@
 package com.srjhnd.opennews
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,8 +26,31 @@ class MainFragment : Fragment() {
         val adapter = HeadlineAdapter()
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         binding.recyclerView.adapter = adapter
+        binding.swipeRefreshView.setOnRefreshListener {
+            viewModel.fetchTopHeadlines()
+            binding.swipeRefreshView.isRefreshing = false
+        }
         subscribeUi(adapter, binding)
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.refresh_action -> {
+                viewModel.fetchTopHeadlines()
+            }
+            R.id.about_action -> {
+                val count = viewModel.getCount()
+                Toast.makeText(this.context, "count is $count", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun subscribeUi(adapter: HeadlineAdapter, binding: FragmentMainBinding?) {

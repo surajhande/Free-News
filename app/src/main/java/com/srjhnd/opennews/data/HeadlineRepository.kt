@@ -1,51 +1,66 @@
 package com.srjhnd.opennews.data
 
-import android.content.Context
-import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import com.srjhnd.opennews.api.HeadlineResponse
+import com.srjhnd.opennews.api.NewsAPIService
+import com.srjhnd.opennews.utils.NetworkUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
-class HeadlineRepository private constructor(private val headlineDAO: HeadlineDAO) {
+class HeadlineRepository private constructor(
+    private val headlineDAO: HeadlineDAO,
+    private val newsAPIService: NewsAPIService
+) {
     val allHeadlines: LiveData<List<Headline>> = headlineDAO.getHeadlines()
 
     companion object {
         private var instance: HeadlineRepository? = null
 
-        fun getInstance(headlineDAO: HeadlineDAO): HeadlineRepository {
-            return instance?: synchronized(this) {
-                instance ?: HeadlineRepository(headlineDAO).also { instance = it }
+        fun getInstance(
+            headlineDAO: HeadlineDAO,
+            newsAPIService: NewsAPIService
+        ): HeadlineRepository {
+            return instance ?: synchronized(this) {
+                instance ?: HeadlineRepository(headlineDAO, newsAPIService).also { instance = it }
             }
         }
     }
 
+    fun insertHeadline(headline: Headline) = CoroutineScope(IO).launch {
+        headlineDAO.insert(headline)
+    }
 
-    class InsertHeadlineAsyncTask(val headlineDAO: HeadlineDAO) :
-        AsyncTask<Headline, Any?, Any?>() {
-        override fun doInBackground(vararg params: Headline?): Any? {
-            if (params[0] != null)
-                headlineDAO.insert(params[0]!!)
-            return null
+    fun updateHeadline(headline: Headline) = CoroutineScope(IO).launch {
+        headlineDAO.update(headline)
+    }
+
+    fun deleteHeadline(headline: Headline) = CoroutineScope(IO).launch {
+        headlineDAO.delete(headline)
+    }
+
+    fun getCountAsync() = CoroutineScope(IO).async {
+        headlineDAO.getCount()
+    }
+
+    fun fetchTopHeadlines() {
+        CoroutineScope(IO).launch {
+            val response = newsAPIService.getTopHeadlines(NetworkUtils.country, NetworkUtils.API_KEY)
+            val headlines = response.articles
+            headlines.apply { cacheResponse(headlines) }
         }
     }
 
-    class UpdateHeadlineAsyncTask(val headlineDAO: HeadlineDAO) :
-        AsyncTask<Headline, Any?, Any?>() {
-        override fun doInBackground(vararg params: Headline?): Any? {
-            if (params[0] != null)
-                headlineDAO.update(params[0]!!)
-            return null
+    private fun cacheResponse(headlines: List<Headline>) {
+        CoroutineScope(IO).launch {
+            for (headline in headlines)
+                headlineDAO.insert(headline)
         }
     }
-
-    class DeleteHeadlineAsyncTask(val headlineDAO: HeadlineDAO) :
-        AsyncTask<Headline, Any?, Any?>() {
-        override fun doInBackground(vararg params: Headline?): Any? {
-            if (params[0] != null)
-                headlineDAO.delete(params[0]!!)
-            return null
-        }
-    }
-
-    fun inserHeadline(headline: Headline) = InsertHeadlineAsyncTask(headlineDAO).execute()
-    fun updateHeadline(headline: Headline) = UpdateHeadlineAsyncTask(headlineDAO).execute()
-    fun deleteHeadline(headline: Headline) = DeleteHeadlineAsyncTask(headlineDAO).execute()
 }

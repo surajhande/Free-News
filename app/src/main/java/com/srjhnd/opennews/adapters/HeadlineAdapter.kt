@@ -15,13 +15,15 @@ class HeadlineAdapter :
     ListAdapter<Headline, HeadlineAdapter.HeadlineViewHolder>(HeadlineDiffCallback()) {
     private lateinit var binding: HeadlineItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadlineViewHolder {
-        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
             R.layout.headline_item,
-            parent, false)
+            parent, false
+        )
         return HeadlineViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: HeadlineViewHolder, position: Int) {
-        Log.d("SRJ", getItem(position).source?.source_name?:"empty")
         holder.bind(getItem(position))
     }
 
@@ -36,11 +38,11 @@ class HeadlineAdapter :
 
     private class HeadlineDiffCallback : DiffUtil.ItemCallback<Headline>() {
         override fun areItemsTheSame(oldItem: Headline, newItem: Headline): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: Headline, newItem: Headline): Boolean {
-            return oldItem == newItem
+            return oldItem.title == newItem.title
         }
 
     }

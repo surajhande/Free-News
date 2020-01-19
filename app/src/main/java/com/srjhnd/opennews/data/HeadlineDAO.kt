@@ -7,18 +7,21 @@ import androidx.room.*
 interface HeadlineDAO {
 
 
-    @Insert
-    fun insert(headline: Headline)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(headline: Headline)
 
     @Insert
-    fun insertAll(headlines: List<Headline>)
+    suspend fun insertAll(headlines: List<Headline>)
 
     @Delete
-    fun delete(headline: Headline)
+    suspend fun delete(headline: Headline)
 
     @Update
-    fun update(headline: Headline)
+    suspend fun update(headline: Headline)
 
-    @Query("SELECT * FROM headlines_table")
+    @Query("SELECT * FROM headlines_table ORDER BY publishedAt DESC")
     fun getHeadlines(): LiveData<List<Headline>>
+
+    @Query("SELECT COUNT(*) FROM headlines_table")
+    fun getCount(): Int
 }
