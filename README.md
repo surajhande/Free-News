@@ -1,10 +1,13 @@
-# Free-News
+# Free News  ✌
+![](logo.png)
 
-<p>This is a sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's.
-Made using modern android architecture components.</p>
+<p>A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
+and modern android architecture components.</p>
 
 ![](demo.gif)
 
+
+<h3>Libraries used:</h3>
 <a target="_blank" href="https://developer.android.com/topic/libraries/architecture/livedata#work_livedata" >LiveData</a> <br/>
 <a target="_blank" href="https://developer.android.com/topic/libraries/data-binding/">Data Binding</a><br/>
 <a target="_blank" href="https://developer.android.com/jetpack/androidx/releases/room">Room</a> <br/>
