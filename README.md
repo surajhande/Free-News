@@ -1,8 +1,8 @@
 # Free News  ✌
 ![](logo.png)
 
-<p>A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
-and modern android architecture components.</p>
+### A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
+### and modern android architecture components.
 
 ![](demo.gif)
 
