@@ -1,9 +1,10 @@
-package com.srjhnd.opennews.data
+package com.srjhnd.freenews.data
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
+import androidx.room.TypeConverters
+import java.util.*
 
 
 @Entity(tableName = "headlines_table")
@@ -16,6 +17,7 @@ data class Headline(
     var description: String?,
     var url: String?,
     var urlToImage: String?,
-    var publishedAt: String?,
+    @TypeConverters(DateConverter::class)
+    var publishedAt: Date?,
     var content: String?
 )

@@ -1,4 +1,4 @@
-package com.srjhnd.opennews.data
+package com.srjhnd.freenews.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

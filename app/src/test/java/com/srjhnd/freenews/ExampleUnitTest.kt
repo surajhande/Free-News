@@ -1,4 +1,4 @@
-package com.srjhnd.opennews
+package com.srjhnd.freenews
 
 import org.junit.Test
 

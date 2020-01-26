@@ -1,4 +1,4 @@
-package com.srjhnd.opennews
+package com.srjhnd.freenews
 
 import android.os.Bundle
 import android.view.*
@@ -7,9 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.srjhnd.opennews.adapters.HeadlineAdapter
-import com.srjhnd.opennews.databinding.FragmentMainBinding
-import com.srjhnd.opennews.viewmodel.HeadlineViewModel
+import com.srjhnd.freenews.adapters.HeadlineAdapter
+import com.srjhnd.freenews.databinding.FragmentMainBinding
+import com.srjhnd.freenews.viewmodel.HeadlineViewModel
 
 class MainFragment : Fragment() {
 
@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.swipeRefreshView.setOnRefreshListener {
             viewModel.fetchTopHeadlines()
-            binding.swipeRefreshView.isRefreshing = false
+
         }
         subscribeUi(adapter, binding)
         setHasOptionsMenu(true)
@@ -53,9 +53,14 @@ class MainFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun subscribeUi(adapter: HeadlineAdapter, binding: FragmentMainBinding?) {
+    private fun subscribeUi(adapter: HeadlineAdapter, binding: FragmentMainBinding) {
         viewModel.headlines.observe(viewLifecycleOwner) { result ->
             adapter.submitList(result)
+        }
+        viewModel.isRefreshing.observe(viewLifecycleOwner) {
+            if (binding.swipeRefreshView.isRefreshing && it) { //
+                binding.swipeRefreshView.isRefreshing = false
+            }
         }
     }
 }

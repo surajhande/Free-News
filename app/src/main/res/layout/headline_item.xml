@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
             name="headline"
-            type="com.srjhnd.opennews.data.Headline" />
+            type="com.srjhnd.freenews.data.Headline" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:onClick="@{clickListener}"
+        android:layout_margin="8dp"
+        app:cardElevation="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,7 +42,7 @@
                 android:layout_marginStart="@dimen/footer_margin"
                 android:layout_marginTop="@dimen/footer_margin"
                 android:layout_marginEnd="@dimen/footer_margin"
-                android:text="@{headline.publishedAt}"
+                android:text="@{headline.publishedAt.toLocaleString()}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="@dimen/footer_font" />
@@ -49,7 +54,8 @@
                 android:layout_below="@id/tv_description"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/footer_margin"
-                android:text="@{headline.source.source_name}"
+                android:layout_marginEnd="@dimen/footer_margin"
+                android:text="@{headline.source.name}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="@dimen/footer_font" />
 
@@ -73,8 +79,8 @@
                 android:layout_below="@id/tv_title"
                 android:layout_marginStart="@dimen/footer_margin"
                 android:layout_marginEnd="@dimen/footer_margin"
-                android:maxLines="3"
                 android:ellipsize="end"
+                android:maxLines="3"
                 android:text="@{headline.description}"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/description_font" />

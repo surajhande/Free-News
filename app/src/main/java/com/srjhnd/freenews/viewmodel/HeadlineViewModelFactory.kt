@@ -1,8 +1,8 @@
-package com.srjhnd.opennews.viewmodel
+package com.srjhnd.freenews.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.srjhnd.opennews.data.HeadlineRepository
+import com.srjhnd.freenews.data.HeadlineRepository
 
 class HeadlineViewModelFactory(private val repository: HeadlineRepository) :
     ViewModelProvider.NewInstanceFactory() {

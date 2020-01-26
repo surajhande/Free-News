@@ -1,15 +1,17 @@
-package com.srjhnd.opennews.adapters
+package com.srjhnd.freenews.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.srjhnd.opennews.R
-import com.srjhnd.opennews.data.Headline
-import com.srjhnd.opennews.databinding.HeadlineItemBinding
+import com.srjhnd.freenews.MainFragmentDirections
+import com.srjhnd.freenews.R
+import com.srjhnd.freenews.data.Headline
+import com.srjhnd.freenews.databinding.HeadlineItemBinding
 
 class HeadlineAdapter :
     ListAdapter<Headline, HeadlineAdapter.HeadlineViewHolder>(HeadlineDiffCallback()) {
@@ -30,9 +32,18 @@ class HeadlineAdapter :
     class HeadlineViewHolder(val binding: HeadlineItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(headline: Headline) {
-            binding.invalidateAll()
             binding.headline = headline
+            binding.setClickListener { view ->
+                binding.headline?.url?.let {
+                    navigateDetailView(it, view)
+                }
+            }
             binding.executePendingBindings()
+        }
+
+        private fun navigateDetailView(url: String, view: View) {
+            val direction = MainFragmentDirections.actionMainFragmentToDetailFragment(url)
+            view.findNavController().navigate(direction)
         }
     }
 

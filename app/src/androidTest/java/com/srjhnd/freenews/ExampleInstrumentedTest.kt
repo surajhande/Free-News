@@ -1,4 +1,4 @@
-package com.srjhnd.opennews
+package com.srjhnd.freenews
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

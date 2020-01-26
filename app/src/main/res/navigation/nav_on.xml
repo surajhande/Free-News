@@ -7,7 +7,8 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.srjhnd.opennews.MainFragment">
+        android:name="com.srjhnd.freenews.MainFragment"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detail_fragment"
@@ -16,5 +17,11 @@
     </fragment>
     <fragment
         android:id="@+id/detail_fragment"
-        android:name="com.srjhnd.opennews.DetailFragment" />
+        android:name="com.srjhnd.freenews.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="article_url"
+            app:argType="string"
+            />
+    </fragment>
 </navigation>

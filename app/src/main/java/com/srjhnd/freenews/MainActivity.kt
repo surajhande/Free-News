@@ -1,10 +1,9 @@
-package com.srjhnd.opennews
+package com.srjhnd.freenews
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.srjhnd.opennews.databinding.ActivityMainBinding
+import com.srjhnd.freenews.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {

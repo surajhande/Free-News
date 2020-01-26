@@ -1,7 +1,7 @@
-package com.srjhnd.opennews.api
+package com.srjhnd.freenews.api
 
 import com.google.gson.annotations.SerializedName
-import com.srjhnd.opennews.data.Headline
+import com.srjhnd.freenews.data.Headline
 
 
 //"status": "ok",
