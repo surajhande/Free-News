@@ -38,7 +38,9 @@ class HeadlineViewModel(private val headlineRepository: HeadlineRepository) : Vi
             if (response.status != "") {
                 response.articles.forEach {
                     println("source is ${it.source?.name}")
-                    insertHeadline(it) }
+                    it.timestamp = System.currentTimeMillis()
+                    insertHeadline(it)
+                }
             }
         }
         isRefreshing.value = true

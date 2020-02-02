@@ -2,7 +2,8 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshNews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F02453">
@@ -19,5 +20,5 @@
             android:layout_height="wrap_content"
             app:layout_anchor="@+id/news_view"
             app:layout_anchorGravity="center" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

@@ -19,7 +19,7 @@ interface HeadlineDAO {
     @Update
     suspend fun update(headline: Headline)
 
-    @Query("SELECT * FROM headlines_table ORDER BY publishedAt DESC")
+    @Query("SELECT * FROM headlines_table ORDER BY timestamp DESC LIMIT 50")
     fun getHeadlines(): LiveData<List<Headline>>
 
     @Query("SELECT COUNT(*) FROM headlines_table")

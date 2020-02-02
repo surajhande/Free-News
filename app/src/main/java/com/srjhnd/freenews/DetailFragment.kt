@@ -24,8 +24,12 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
-        binding.newsView.webViewClient = ArticleWebViewClient(binding.progressBar)
+        binding.newsView.webViewClient = ArticleWebViewClient(binding)
         binding.newsView.loadUrl(args.articleUrl)
+        binding.swipeRefreshNews.isRefreshing = true
+        binding.swipeRefreshNews.setOnRefreshListener {
+            binding.newsView.loadUrl(args.articleUrl)
+        }
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -46,16 +50,15 @@ class DetailFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private class ArticleWebViewClient(val progressBar: ProgressBar) : WebViewClient() {
+    private class ArticleWebViewClient(val binding: FragmentDetailBinding) : WebViewClient() {
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            progressBar.visibility = View.VISIBLE
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
+            binding.swipeRefreshNews.isRefreshing = false
             super.onPageFinished(view, url)
-            progressBar.visibility = View.GONE
         }
     }
 }

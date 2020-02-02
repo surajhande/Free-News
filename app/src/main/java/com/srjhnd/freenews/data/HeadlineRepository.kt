@@ -10,7 +10,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
-import java.lang.Exception
+
 
 class HeadlineRepository private constructor(
     private val headlineDAO: HeadlineDAO,

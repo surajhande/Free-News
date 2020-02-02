@@ -19,5 +19,6 @@ data class Headline(
     var urlToImage: String?,
     @TypeConverters(DateConverter::class)
     var publishedAt: Date?,
-    var content: String?
+    var content: String?,
+    var timestamp: Long?
 )

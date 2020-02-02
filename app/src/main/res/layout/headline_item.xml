@@ -4,35 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
+
         <variable
             name="headline"
             type="com.srjhnd.freenews.data.Headline" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:onClick="@{clickListener}"-->
+    <!--        android:layout_margin="8dp"-->
+    <!--        app:cardElevation="4dp">-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{clickListener}"
-        android:layout_margin="8dp"
-        app:cardElevation="4dp">
+        android:background="@drawable/item_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{clickListener}">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="4dp">
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:padding="@dimen/headline_padding">
 
-            <ImageView
-                android:id="@+id/iv_image"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_placeholder"
-                android:scaleType="centerCrop"
-                app:urlToImage="@{headline.urlToImage}"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="@dimen/iv_height"
+                android:id="@+id/iv_frame"
+                android:elevation="0dp"
+                app:cardMaxElevation="0dp"
+                android:layout_marginBottom="@dimen/iv_bottom_margin"
+                app:cardCornerRadius="@dimen/corner_radius">
+
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/iv_height"
+                    android:background="@drawable/ic_placeholder"
+                    android:scaleType="centerCrop"
+                    app:urlToImage="@{headline.urlToImage}"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_published_at"
@@ -63,7 +85,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_image"
+                android:layout_below="@id/iv_frame"
                 android:layout_marginStart="@dimen/footer_margin"
                 android:layout_marginEnd="@dimen/footer_margin"
                 android:fontFamily="sans-serif"
@@ -86,5 +108,12 @@
                 android:textSize="@dimen/description_font" />
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ECECEC" />
+
+    </RelativeLayout>
+
+    <!--    </androidx.cardview.widget.CardView>-->
 </layout>
