@@ -4,7 +4,7 @@
 ### A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
 ### and modern android architecture components.
 
-![](demo.gif)
+![](demo1.gif) ![](demo2.gif) ![](demo3.gif)
 
 
 <h3>Libraries used:</h3>
