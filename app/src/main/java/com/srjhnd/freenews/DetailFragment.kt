@@ -30,7 +30,6 @@ class DetailFragment : Fragment() {
         binding.swipeRefreshNews.setOnRefreshListener {
             binding.newsView.loadUrl(args.articleUrl)
         }
-        setHasOptionsMenu(true)
         return binding.root
     }
 

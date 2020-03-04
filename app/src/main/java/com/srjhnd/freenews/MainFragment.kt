@@ -4,12 +4,11 @@ import InjectionUtils
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.srjhnd.freenews.adapters.HeadlineAdapter
 import com.srjhnd.freenews.databinding.FragmentMainBinding
 import com.srjhnd.freenews.utils.NetworkUtils
@@ -35,49 +34,20 @@ class MainFragment : Fragment() {
 
         val adapter = HeadlineAdapter()
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-
         /* setting up UI elements */
         with(binding) {
             recyclerView.adapter = adapter
-            recyclerView.layoutManager = object : LinearLayoutManager(context, VERTICAL, false) {
-                override fun onLayoutCompleted(state: RecyclerView.State?) {
-                    super.onLayoutCompleted(state)
-                    val currPos =
-                        findLastVisibleItemPosition() - findFirstVisibleItemPosition() + 1
-                    if (showGoToTop && (currPos < adapter.itemCount)) {
-                        gotoTopButton.show()
-                        showGoToTop = false
-                    }
-                }
-            }
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    if (isFirstItemShowing()) {
-                        gotoTopButton.hide()
-                        showGoToTop = false
-                    }
-                }
-            })
-            gotoTopButton.setOnClickListener {
-                binding.recyclerView.smoothScrollToPosition(0)
-                showGoToTop = false
-                gotoTopButton.hide()
-            }
             swipeRefreshView.setOnRefreshListener {
                 viewModel.fetchTopHeadlines()
             }
         }
+
         viewModel.fetchTopHeadlines()
-        subscribeUi(adapter, binding)
         setHasOptionsMenu(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+        subscribeUi(adapter, binding)
         return binding.root
     }
-
-    private fun isFirstItemShowing(): Boolean {
-        return (binding.recyclerView?.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() <= 1
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -108,7 +78,6 @@ class MainFragment : Fragment() {
             with(binding) {
                 if (swipeRefreshView.isRefreshing && it) {
                     swipeRefreshView.isRefreshing = false
-                    if (showGoToTop && !isFirstItemShowing()) gotoTopButton.show() else gotoTopButton.hide()
                 }
             }
         }

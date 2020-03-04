@@ -40,8 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/iv_height"
                 android:id="@+id/iv_frame"
-                android:elevation="0dp"
-                app:cardMaxElevation="0dp"
+                app:cardElevation="0dp"
                 android:layout_marginBottom="@dimen/iv_bottom_margin"
                 app:cardCornerRadius="@dimen/corner_radius">
 

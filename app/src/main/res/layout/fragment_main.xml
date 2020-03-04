@@ -7,11 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -22,32 +23,39 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:listitem="@layout/headline_item" />
-
+                tools:listitem="@layout/headline_item"
+                />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/gotoTopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/footer_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/feed_updated"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            android:visibility="gone"
-            app:icon="@drawable/ic_up_arrow"
-            app:iconSize="16dp"
-            app:iconTint="@color/colorPrimary" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                app:layout_scrollFlags="noScroll"
+                app:title="">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/logo_fg"
+                    android:contentDescription="@string/app_name" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
             android:id="@+id/noNews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No News"
+            android:text="@string/no_news"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#8D8D8D"
             android:textStyle="bold|italic"
