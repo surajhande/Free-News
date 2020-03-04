@@ -4,7 +4,7 @@
 ### A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
 ### and modern android architecture components.
 
-![](demo.gif)
+![](demo1.gif) ![](demo2.gif) ![](demo3.gif)
 
 
 <h3>Libraries used:</h3>
@@ -14,6 +14,7 @@
 <a target="_blank" href="https://developer.android.com/topic/libraries/architecture/viewmodel">ViewModel</a><br/>
 <a target="_blank" href="https://square.github.io/retrofit/">Retrofit</a><br/>
 <a target="_blank" href="https://github.com/bumptech/glide">Glide</a><br/>
+<a target="_blank" href="https://kotlinlang.org/docs/reference/coroutines-overview.html">Kotlin Coroutines</a><br/>
 
 # License
 
