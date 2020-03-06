@@ -4,8 +4,7 @@
 ### A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's 
 ### and modern android architecture components.
 
-![](demo1.gif) ![](demo2.gif) ![](demo3.gif)
-
+![](demo.gif) 
 
 <h3>Libraries used:</h3>
 <a target="_blank" href="https://developer.android.com/topic/libraries/architecture/livedata#work_livedata" >LiveData</a> <br/>
