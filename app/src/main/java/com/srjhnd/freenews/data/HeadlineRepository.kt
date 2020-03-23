@@ -10,26 +10,15 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class HeadlineRepository private constructor(
+@Singleton
+class HeadlineRepository @Inject constructor(
     private val headlineDAO: HeadlineDAO,
     private val newsAPIService: NewsAPIService
 ) {
     val allHeadlines: LiveData<List<Headline>> = headlineDAO.getHeadlines()
-
-    companion object {
-        private var instance: HeadlineRepository? = null
-
-        fun getInstance(
-            headlineDAO: HeadlineDAO,
-            newsAPIService: NewsAPIService
-        ): HeadlineRepository {
-            return instance ?: synchronized(this) {
-                instance ?: HeadlineRepository(headlineDAO, newsAPIService).also { instance = it }
-            }
-        }
-    }
 
     suspend fun insertHeadline(headline: Headline) = headlineDAO.insert(headline)
     suspend fun updateHeadline(headline: Headline) = headlineDAO.update(headline)

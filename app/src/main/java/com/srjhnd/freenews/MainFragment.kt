@@ -1,6 +1,6 @@
 package com.srjhnd.freenews
 
-import InjectionUtils
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -13,17 +13,25 @@ import com.srjhnd.freenews.adapters.HeadlineAdapter
 import com.srjhnd.freenews.databinding.FragmentMainBinding
 import com.srjhnd.freenews.utils.NetworkUtils
 import com.srjhnd.freenews.viewmodel.HeadlineViewModel
+import com.srjhnd.freenews.viewmodel.HeadlineViewModelFactory
+import javax.inject.Inject
 
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private var showGoToTop = false
+    @Inject
+    lateinit var viewModelFactory: HeadlineViewModelFactory
 
     private val viewModel: HeadlineViewModel by viewModels {
-        InjectionUtils.provideHeadlineViewModel(requireContext())
+        viewModelFactory
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity!!.application as FreeNewsApplication).applicationGraph.inject(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

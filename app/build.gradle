@@ -33,7 +33,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
+    
     }
 
     kotlinOptions {
@@ -78,7 +78,6 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:2.2.0"
 
     // Retrofit + GSON
-    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 
@@ -90,6 +89,11 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
+
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'

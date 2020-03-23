@@ -11,8 +11,9 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class HeadlineViewModel(private val headlineRepository: HeadlineRepository) : ViewModel() {
+class HeadlineViewModel @Inject constructor(private val headlineRepository: HeadlineRepository) : ViewModel() {
     val headlines: LiveData<List<Headline>> = headlineRepository.allHeadlines
     val isRefreshing: MutableLiveData<Boolean> = MutableLiveData(false)
 

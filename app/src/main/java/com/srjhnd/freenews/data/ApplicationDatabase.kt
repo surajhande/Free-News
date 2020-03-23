@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import javax.inject.Singleton
 
+@Singleton
 @Database(entities = [Headline::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class ApplicationDatabase : RoomDatabase() {
