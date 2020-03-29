@@ -32,6 +32,7 @@ class MainFragment : Fragment() {
         super.onAttach(context)
         (activity!!.application as FreeNewsApplication).applicationGraph.inject(this)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,16 +51,17 @@ class MainFragment : Fragment() {
             }
         }
 
-        viewModel.fetchTopHeadlines()
         setHasOptionsMenu(true)
+        viewModel.fetchTopHeadlines()
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
         subscribeUi(adapter, binding)
         return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -19,6 +19,9 @@ interface HeadlineDAO {
     @Update
     suspend fun update(headline: Headline)
 
+    @Query("DELETE from headlines_table where publishedAt < date('now', '-1 day')")
+    suspend fun removeOldHeadlines()
+
     @Query("SELECT * FROM headlines_table ORDER BY timestamp DESC")
     fun getHeadlines(): LiveData<List<Headline>>
 
