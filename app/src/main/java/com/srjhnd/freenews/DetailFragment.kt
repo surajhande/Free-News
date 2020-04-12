@@ -8,8 +8,10 @@ import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.srjhnd.freenews.databinding.FragmentDetailBinding
 
@@ -27,9 +29,14 @@ class DetailFragment : Fragment() {
         binding.newsView.webViewClient = ArticleWebViewClient(binding)
         binding.newsView.loadUrl(args.articleUrl)
         binding.swipeRefreshNews.isRefreshing = true
+        binding.toolbar.setNavigationOnClickListener {view ->
+            view.findNavController().navigateUp()
+        }
         binding.swipeRefreshNews.setOnRefreshListener {
             binding.newsView.loadUrl(args.articleUrl)
         }
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -50,10 +57,6 @@ class DetailFragment : Fragment() {
     }
 
     private class ArticleWebViewClient(val binding: FragmentDetailBinding) : WebViewClient() {
-
-        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-            super.onPageStarted(view, url, favicon)
-        }
 
         override fun onPageFinished(view: WebView?, url: String?) {
             binding.swipeRefreshNews.isRefreshing = false

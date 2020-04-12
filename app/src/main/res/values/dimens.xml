@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="footer_font">10sp</dimen>
-    <dimen name="title_font">18sp</dimen>
-    <dimen name="description_font">14sp</dimen>
-    <dimen name="footer_margin">8dp</dimen>
+    <dimen name="feed_footer_font_size">12sp</dimen>
+    <dimen name="feed_title_font_size">18sp</dimen>
+    <dimen name="feed_description_font_size">16sp</dimen>
+    <dimen name="feed_footer_margin">8dp</dimen>
     <dimen name="iv_height">140dp</dimen>
     <dimen name="iv_bottom_margin">10dp</dimen>
     <dimen name="headline_padding">14dp</dimen>
     <dimen name="corner_radius">6dp</dimen>
+    <dimen name="headline_appbar_height">270dp</dimen>
+    <dimen name="icon_size_on_button">16dp</dimen>
 </resources>

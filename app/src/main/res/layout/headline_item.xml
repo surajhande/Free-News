@@ -37,12 +37,12 @@
             android:padding="@dimen/headline_padding">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/iv_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/iv_height"
-                android:id="@+id/iv_frame"
-                app:cardElevation="0dp"
                 android:layout_marginBottom="@dimen/iv_bottom_margin"
-                app:cardCornerRadius="@dimen/corner_radius">
+                app:cardCornerRadius="@dimen/corner_radius"
+                app:cardElevation="0dp">
 
                 <ImageView
                     android:id="@+id/iv_image"
@@ -51,60 +51,64 @@
                     android:background="@drawable/ic_placeholder"
                     android:scaleType="centerCrop"
                     app:urlToImage="@{headline.urlToImage}"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:contentDescription="@string/thumbnail_for_headline" />
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_published_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_description"
-                android:layout_marginStart="@dimen/footer_margin"
-                android:layout_marginTop="@dimen/footer_margin"
-                android:layout_marginEnd="@dimen/footer_margin"
+                android:layout_marginStart="@dimen/feed_footer_margin"
+                android:layout_marginTop="@dimen/feed_footer_margin"
+                android:layout_marginEnd="@dimen/feed_footer_margin"
                 android:text="@{headline.publishedAt.toLocaleString()}"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="@dimen/footer_font" />
+                android:textAppearance="@style/HeadlineTextAppearance.Footer"
+                android:textSize="@dimen/feed_footer_font_size"
+                tools:text="April 10, 2020 11:22:44 PM" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_description"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/footer_margin"
-                android:layout_marginEnd="@dimen/footer_margin"
+                android:layout_marginTop="@dimen/feed_footer_margin"
+                android:layout_marginEnd="@dimen/feed_footer_margin"
                 android:text="@{headline.source.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="@dimen/footer_font" />
+                android:textAppearance="@style/HeadlineTextAppearance.Footer"
+                android:textSize="@dimen/feed_footer_font_size"
+                tools:text="NDTV.com" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_frame"
-                android:layout_marginStart="@dimen/footer_margin"
-                android:layout_marginEnd="@dimen/footer_margin"
-                android:fontFamily="sans-serif"
+                android:layout_marginStart="@dimen/feed_footer_margin"
+                android:layout_marginEnd="@dimen/feed_footer_margin"
                 android:text="@{headline.title}"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/title_font"
-                android:textStyle="bold" />
+                android:textAppearance="@style/HeadlineTextAppearance.Title"
+                android:textSize="@dimen/feed_title_font_size"
+                tools:text="this is place holder text to show Headline text" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
-                android:layout_marginStart="@dimen/footer_margin"
-                android:layout_marginEnd="@dimen/footer_margin"
+                android:layout_marginStart="@dimen/feed_footer_margin"
+                android:layout_marginEnd="@dimen/feed_footer_margin"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="@{headline.description}"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/description_font" />
+                android:textAppearance="@style/HeadlineTextAppearance.Description"
+                android:textSize="@dimen/feed_description_font_size"
+                tools:text="this is place holder text to show Description text. This will span to multiple lines" />
+
         </RelativeLayout>
 
         <View

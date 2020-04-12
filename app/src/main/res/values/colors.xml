@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_primary">#fefefe</color>
+    <color name="color_secondary">#37A5A5</color>
     <color name="color_primary_dark">#E4E4E4</color>
     <color name="color_accent">#37A5A5</color>
     <color name="normal">#ffffff</color>
@@ -8,6 +9,7 @@
     <color name="color_control_light">#39000000</color>
     <color name="white">#fff</color>
     <color name="black">#000</color>
+    <color name="red">#B80606</color>
     <color name="transparent">#0fff</color>
     <color name="nav_bar_scrim_light">#B3FFFFFF</color>
 </resources>

@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.srjhnd.freenews.MainFragmentDirections
+import com.srjhnd.freenews.FeedFragmentDirections
 import com.srjhnd.freenews.R
 import com.srjhnd.freenews.data.Headline
 import com.srjhnd.freenews.databinding.HeadlineItemBinding
@@ -34,15 +34,15 @@ class HeadlineAdapter :
         fun bind(headline: Headline) {
             binding.headline = headline
             binding.setClickListener { view ->
-                binding.headline?.url?.let {
-                    navigateDetailView(it, view)
+                binding.headline?.title?.let {
+                    navigateHeadlineView(it, view)
                 }
             }
             binding.executePendingBindings()
         }
 
-        private fun navigateDetailView(url: String, view: View) {
-            val direction = MainFragmentDirections.actionMainFragmentToDetailFragment(url)
+        private fun navigateHeadlineView(title: String, view: View) {
+            val direction = FeedFragmentDirections.actionFeedFragmentToHeadlineFragment(title)
             view.findNavController().navigate(direction)
         }
     }
@@ -55,6 +55,5 @@ class HeadlineAdapter :
         override fun areContentsTheSame(oldItem: Headline, newItem: Headline): Boolean {
             return oldItem.title == newItem.title
         }
-
     }
 }

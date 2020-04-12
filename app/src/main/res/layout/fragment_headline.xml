@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="headline"
+            type="com.srjhnd.freenews.data.Headline" />
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HeadlineFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headline_appbar_height"
+            android:animateLayoutChanges="true"
+            android:background="?attr/colorSurface"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsableToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorSurface"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="?attr/colorSurface"
+                app:title="@{headline.title}"
+                app:titleEnabled="false"
+                app:toolbarId="@id/toolbar">
+
+                <ImageView
+                    android:id="@+id/hedline_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/headline_appbar_height"
+                    android:contentDescription="@string/banner_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_placeholder"
+                    app:urlToImage="@{headline.urlToImage}" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_keyboard_backspace_24px"
+                    app:titleTextColor="?attr/colorOnSurface" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/headline_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/source_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headline_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/feed_footer_margin"
+                    android:text="@{headline.source.name}"
+                    android:textAppearance="@style/HeadlineTextAppearance.Footer"
+                    tools:text="NDTV.com" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_published_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headline_title"
+                    android:layout_marginTop="@dimen/feed_footer_margin"
+                    android:text="@{headline.publishedAt.toLocaleString()}"
+                    android:textAppearance="@style/HeadlineTextAppearance.Footer"
+                    tools:text="10, April 2020 11:11 PM" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/headline_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{headline.title}"
+                    android:textAppearance="@style/HeadlineTextAppearance.Title"
+                    android:textSize="@dimen/feed_title_font_size"
+                    tools:text="this is place holder text to show Headline text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/headline_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/source_text"
+                    android:layout_marginTop="@dimen/headline_padding"
+                    android:text="@{headline.description}"
+                    android:textAppearance="@style/HeadlineTextAppearance.Description"
+                    android:textSize="@dimen/feed_description_font_size"
+                    tools:text="this is place holder text to show Description text. This will span to multiple lines" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/know_more"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headline_desc"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/feed_footer_margin"
+                    android:onClick="@{clickListener}"
+                    android:text="@string/read_more"
+                    app:icon="@drawable/ic_launch_24px"
+                    app:iconGravity="end"
+                    app:iconSize="@dimen/icon_size_on_button" />
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -8,4 +8,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="feed_updated">Feed Updated</string>
     <string name="no_news">No News</string>
+    <string name="banner_image">banner image</string>
+    <string name="network_error">Network Error!</string>
+    <string name="try_again">Retry</string>
+    <string name="read_more">Read full article</string>
+    <string name="thumbnail_for_headline">Thumbnail for headline.</string>
+    <string name="open_in_browser">Open in Browser</string>
 </resources>

@@ -22,3 +22,8 @@ data class Headline(
     var content: String?,
     var timestamp: Long?
 )
+
+data class Source(
+    val id: String?,
+    val name: String?
+)
