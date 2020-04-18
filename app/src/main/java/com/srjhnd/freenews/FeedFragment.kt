@@ -112,6 +112,8 @@ class FeedFragment : Fragment() {
                 }
                 State.LOADING -> {
                     binding.swipeRefreshView.isRefreshing = true
+                    if (connectionSnackbar.isShown)
+                        connectionSnackbar.dismiss()
                 }
                 State.FAILURE -> {
                     connectionSnackbar.show()
