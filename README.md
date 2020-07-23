@@ -1,11 +1,16 @@
 # Free News  ✌
 ![](logo.png)
 
-### A sample Android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's and modern android architecture components.
+##  A simple news feed android application made using the <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a> API's and modern android architecture components.
 
 ![](demo.gif) 
 
-<h3>Libraries used:</h3>
+## To Install
+### 1) Clone the repo.
+### 2) Get an API key from https://newsapi.org
+### 3) Open gradle.properties file and paste it at API_KEY="YOUR_API_KEY"
+
+## Libraries used
 <a target="_blank" href="https://developer.android.com/topic/libraries/architecture/livedata#work_livedata" >LiveData</a> <br/>
 <a target="_blank" href="https://developer.android.com/topic/libraries/data-binding/">Data Binding</a><br/>
 <a target="_blank" href="https://developer.android.com/jetpack/androidx/releases/room">Room</a> <br/>
